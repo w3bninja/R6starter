@@ -8,10 +8,30 @@
  */
 
 ?>
-
+<a href="/locations">Back to Locations</a>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<div class="entry-content">
+		<?php 
+			$locationAddress1 = get_cfc_field('address-group', 'address-1', $post->ID );
+			$locationAddress2 = get_cfc_field('address-group', 'address-2', $post->ID );
+			$locationCity = get_cfc_field('address-group', 'city', $post->ID );
+			$locationState = get_cfc_field('address-group', 'state', $post->ID );
+			$locationZip = get_cfc_field('address-group', 'postal-code', $post->ID );
+			$fullAddress = $locationAddress1 . '' . $locationAddress2 . ', ' . $locationCity . ', ' . $locationState . ', ' . $locationZip;
+		?>
+		
+		<h3>Static</h3>
+		<?php $mapType = 1; include(locate_template('inc/map.php')); ?>
+		<h3>Interactive</h3>
+		<?php $mapType = 2; include(locate_template('inc/map.php')); ?>
+		<h3>Custom</h3>
+		<?php $mapType = 4; include(locate_template('inc/map.php')); ?>
+
+		<?php echo $fullAddress ?>
+		
+		
+		
 		<?php
 			the_content();
 
@@ -45,30 +65,3 @@
 		</footer><!-- .entry-footer -->
 	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
-
-
-<?php if( is_front_page() ) { ?>
-	<?php
-		$pageCount = 3;
-		include(locate_template('template-parts/child-layouts/services-list.php'));
-	?>
-	<hr>
-	<?php include(locate_template('template-parts/child-layouts/blog-list.php')); ?>
-<?php } ?>
-
-<?php if (is_page('services')) {?>
-	<?php include(locate_template('template-parts/child-layouts/services-list.php')); ?>
-<?php } elseif (is_page('faq')) { ?>
-	questions
-<?php } elseif (is_page('projects')) { ?>
-
-	
-	<?php include(locate_template('inc/post-type-categories.php')); ?>
-	<?php include(locate_template('template-parts/child-layouts/project-list.php')); ?>
-<?php } elseif (is_page('our-team')) { ?>
-	<?php include(locate_template('template-parts/child-layouts/team-list.php')); ?>
-<?php } elseif (is_page('contact-us')) { ?>
-	<?php include(locate_template('template-parts/child-layouts/location-list.php')); ?>
-<?php } ?>
-
-

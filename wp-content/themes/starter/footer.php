@@ -57,31 +57,51 @@
 				<h5>555-555-5555</h5>
 				<hr>
 				<div class="sm">
-					<a href=""><i class="fa fa-facebook-square"></i></a>
-					<a href=""><i class="fa fa-twitter-square"></i></a>
-					<a href=""><i class="fa fa-youtube-square"></i></a>
-					<a href=""><i class="fa fa-linkedin-square"></i></a>
-					<a href=""><i class="fa fa-instagram"></i></a>
+					<?php
+						$contentID = 37;
+						$source = 'sm-links';
+					?>
+					<?php foreach( get_cfc_meta( $source, $contentID ) as $key => $value ){ ?>
+						<a href="<?php the_cfc_field( $source,'sm-link', $contentID, $key ); ?>" title="<?php the_cfc_field( $source,'sm-type', $contentID, $key ); ?>">
+							<i class="fa fa-<?php echo strtolower(the_cfc_field( $source,'sm-type', $contentID, $key )); ?>-square"></i>
+						</a>
+					<?php }  ?>
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-4">
 			<h5>From the Blog</h5>
 			<div class="blog-list">
-				<article>
-					<div class="date">09/25/2017</div>
-					<a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</a>
-				</article>
-				<article>
-					<div class="date">09/25/2017</div>
-					<a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</a>
-				</article>
-				<article>
-					<div class="date">09/25/2017</div>
-					<a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</a>
-				</article>
+				<?php
+						$args = array( 'numberposts' => '5', 'tax_query' => array(
+								array(
+									'taxonomy' => 'post_format',
+									'field' => 'slug',
+									'terms' => 'post-format-aside',
+									'operator' => 'NOT IN'
+								), 
+								array(
+									'taxonomy' => 'post_format',
+									'field' => 'slug',
+									'terms' => 'post-format-image',
+									'operator' => 'NOT IN'
+								)
+						) );
+					?>
+					<?php
+						$recent_posts = wp_get_recent_posts( $args );
+						foreach( $recent_posts as $recent ){
+					?>
+					<article>
+						<div class="date"><?php $recent["post_date"] ?></div>
+						<?php echo '<a href="' . get_permalink($recent["ID"]) . '">' .   ( __($recent["post_title"])).'</a><br>' .   ( __($recent["post_excerpt"])).''; ?>
+					</article>
+					<?php
+						}
+						wp_reset_query();
+					?>
 			</div>
-			<a href="" class="btn btn-primary">Read More</a>
+			<a href="/blog" class="btn btn-primary">Read More</a>
 		</div>
 		<div class="col-sm-4">
 			<h5>Contact Us</h5>

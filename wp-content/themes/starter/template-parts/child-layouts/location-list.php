@@ -16,31 +16,20 @@ if (empty($pageCount)) {
 		$locationState = get_cfc_field('address-group', 'state', $post->ID );
 		$locationZip = get_cfc_field('address-group', 'postal-code', $post->ID );
 		$fullAddress = $locationAddress1 . '' . $locationAddress2 . ', ' . $locationCity . ', ' . $locationState . ', ' . $locationZip;
-		$fullAddressMapFormat = strtolower(str_replace(' ', '+', $fullAddress));
 		?>
 		<div class="col-sm-12 item">
-			<div class="panel panel-default">
-				<div class="panel-body">
+			
+			<div class="row">
+				<div class="col-sm-4">
+					<?php $mapType = 1; include(locate_template('inc/map.php')); ?>
+				</div>
+				<div class="col-sm-8">
 					<?php
-					the_title( '<h3><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h3>' );
+					the_title( '<h4><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h4>' );
 					the_content();
 					?>
-					<hr>
 					<?php echo $fullAddress ?>
-					<hr>
-					<div class="text-right">
-						<a href="<?php echo 'https://www.google.com/maps/dir//' . $fullAddressMapFormat ?>/" target="_blank"><small>Get Directions</small></a>
-					</div>
-					<hr>
-						Static Map
-					<img src="<?php echo 'http://maps.googleapis.com/maps/api/staticmap?center=' . $fullAddressMapFormat . '&zoom=15&scale=false&size=300x200&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C' . $fullAddressMapFormat ?>" class="img-responsive">
-					
-						Interactive Map
-						<iframe src="<?php echo 'http://maps.google.com/maps?q=' . $fullAddressMapFormat . '&output=embed' ?>" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
-						
-					</div>
-				</div>
-				<div class="panel-footer">
+					<br>
 					<a href="<?php the_permalink() ?>" class="btn btn-primary">Read More</a>
 				</div>
 			</div>

@@ -149,7 +149,9 @@
 			$contentID = 37;
 			$source = 'banner';
 		?>
+		<?php $bannerCount = 0; ?>
 		<?php foreach( get_cfc_meta( $source, $contentID ) as $key => $value ){ ?>
+		  <?php $bannerCount = $bannerCount + 1; ?>
 			<?php $photo_obj = get_cfc_field( $source,'image', $contentID, $key );  ?>
 			<div class="slide" id="slide1" style="background:url(<?php echo $photo_obj['url']; ?>) no-repeat top center; background-size:cover;">
 				<div class="slide-overlay"></div>
@@ -158,8 +160,7 @@
 						<div class="col-md-7">
 							<h3><?php the_cfc_field( $source,'headline', $contentID, $key ); ?><span><?php the_cfc_field( $source,'subtext', $contentID, $key ); ?></span></h3>
 							<div class="text">
-								<p>text goes here</p>
-								<a href="amazon.com" class="btn btn-primary btn-lg"> Read More </a>
+								<a href="<?php the_cfc_field( $source,'link-text', $contentID, $key ); ?>" class="btn btn-primary btn-lg"> Read More </a>
 							</div>
 						</div>
 					</div>
@@ -168,9 +169,12 @@
 		<?php }  ?>
     </div>
   </div>
-  <div id="pager" class="pager controls"></div>
-  <div class="pager-arrows"> <a href="#" class="prev" id="prev"><i class="fa fa-angle-left"></i></a> <a href="#" class="next" id="next"><i class="fa fa-angle-right"></i></a> </div>
-</div>
+  	<?php if ($bannerCount > 1){ ?>
+		<div id="pager" class="pager controls"></div>
+  		<div class="pager-arrows"> <a href="#" class="prev" id="prev"><i class="fa fa-angle-left"></i></a> <a href="#" class="next" id="next"><i class="fa fa-angle-right"></i></a> </div>
+	<?php } ?>
+  
+	</div>
 	<?php } else { ?>
 		<div class="page-header text-center"><h2 title="<?php single_post_title(); ?>"><?php single_post_title(); ?></h2></div>
 	<?php } ?>
