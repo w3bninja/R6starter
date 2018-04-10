@@ -10,7 +10,7 @@ while ( $loop->have_posts() ) : $loop->the_post();
 			<img src="<?php echo $img['url']; ?>" class="img-responsive">
 			<div class="panel-body">
 				<?php
-				the_title( '<h3><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h3>' );
+				the_title( '<h4><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h4>' );
 				the_content();
 				?>
 				<?php echo get_cfc_field('team-details', 'title', $post->ID );?>

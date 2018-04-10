@@ -172,7 +172,15 @@ $(function () {
 		closeOnClickOutside: true
 	});
 	
-	
+	// responsive Tabs
+	$('.responsiveTabs').responsiveTabs({
+		rotate: false,
+		startCollapsed:	'accordion',
+		collapsible: 	'accordion',
+		setHash: 		true,
+		active:			0,
+		scrollToAccordion: true
+	});
 	
 
 });

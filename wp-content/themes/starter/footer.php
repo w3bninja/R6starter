@@ -56,50 +56,40 @@
 				Call Us Today!<br>
 				<h5>555-555-5555</h5>
 				<hr>
-				<div class="sm">
-					<?php
-						$contentID = 37;
-						$source = 'sm-links';
-					?>
-					<?php foreach( get_cfc_meta( $source, $contentID ) as $key => $value ){ ?>
-						<a href="<?php the_cfc_field( $source,'sm-link', $contentID, $key ); ?>" title="<?php the_cfc_field( $source,'sm-type', $contentID, $key ); ?>">
-							<i class="fa fa-<?php echo strtolower(the_cfc_field( $source,'sm-type', $contentID, $key )); ?>-square"></i>
-						</a>
-					<?php }  ?>
-				</div>
+				<?php include(locate_template('inc/social-icons.php')); ?>
 			</div>
 		</div>
 		<div class="col-sm-4">
 			<h5>From the Blog</h5>
 			<div class="blog-list">
 				<?php
-						$args = array( 'numberposts' => '5', 'tax_query' => array(
-								array(
-									'taxonomy' => 'post_format',
-									'field' => 'slug',
-									'terms' => 'post-format-aside',
-									'operator' => 'NOT IN'
-								), 
-								array(
-									'taxonomy' => 'post_format',
-									'field' => 'slug',
-									'terms' => 'post-format-image',
-									'operator' => 'NOT IN'
-								)
-						) );
-					?>
-					<?php
-						$recent_posts = wp_get_recent_posts( $args );
-						foreach( $recent_posts as $recent ){
-					?>
-					<article>
-						<div class="date"><?php $recent["post_date"] ?></div>
-						<?php echo '<a href="' . get_permalink($recent["ID"]) . '">' .   ( __($recent["post_title"])).'</a><br>' .   ( __($recent["post_excerpt"])).''; ?>
-					</article>
-					<?php
-						}
-						wp_reset_query();
-					?>
+					$args = array( 'numberposts' => '5', 'tax_query' => array(
+							array(
+								'taxonomy' => 'post_format',
+								'field' => 'slug',
+								'terms' => 'post-format-aside',
+								'operator' => 'NOT IN'
+							), 
+							array(
+								'taxonomy' => 'post_format',
+								'field' => 'slug',
+								'terms' => 'post-format-image',
+								'operator' => 'NOT IN'
+							)
+					) );
+				?>
+				<?php
+					$recent_posts = wp_get_recent_posts( $args );
+					foreach( $recent_posts as $recent ){
+				?>
+				<article>
+					<div class="date"><?php $recent["post_date"] ?></div>
+					<?php echo '<a href="' . get_permalink($recent["ID"]) . '">' .   ( __($recent["post_title"])).'</a><br>' .   ( __($recent["post_excerpt"])).''; ?>
+				</article>
+				<?php
+					}
+					wp_reset_query();
+				?>
 			</div>
 			<a href="/blog" class="btn btn-primary">Read More</a>
 		</div>
@@ -141,6 +131,10 @@
 <!-- ADD FANCYBOX -->
 <link rel="stylesheet" href="<?php bloginfo( 'template_url' ); ?>/assets/js/fancy/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/fancy/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- ADD RESPONSIVE TABS -->
+<link rel="stylesheet" href="<?php bloginfo( 'template_url' ); ?>/assets/css/responsive-tabs.css">
+<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/jquery.responsiveTabs.min.js"></script>
 
 <!-- PARALLAX -->
 <script src="<?php bloginfo( 'template_url' ); ?>/assets/js/parallax.min.js"></script>

@@ -1134,13 +1134,6 @@ q[lang~='sv'] q:after,
 .iso .item a {
   overflow: hidden;
 }
-/*#iso .item .overlay{ position:absolute; top:0; left:0; bottom:0; right:0; background:rgba(0, 0, 0, .7); opacity: 0;}
-#iso .item .overlay .btn{padding:5px 20px; font-size:12px; display:block;}
-
-#iso .item:hover .overlay {
-	transition: all 0.2s ease-in-out;
-	opacity:1;
-}*/
 /**** Isotope Filtering ****/
 .isotope-item {
   z-index: 2;

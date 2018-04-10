@@ -59,16 +59,15 @@
 <?php if (is_page('services')) {?>
 	<?php include(locate_template('template-parts/child-layouts/services-list.php')); ?>
 <?php } elseif (is_page('faq')) { ?>
-	questions
-<?php } elseif (is_page('projects')) { ?>
-
-	
-	<?php include(locate_template('inc/post-type-categories.php')); ?>
+	<?php include(locate_template('template-parts/child-layouts/faq-list.php')); ?>
+<?php } elseif (is_page('projects')) { ?>e_template('inc/post-type-categories.php')); ?>
 	<?php include(locate_template('template-parts/child-layouts/project-list.php')); ?>
 <?php } elseif (is_page('our-team')) { ?>
 	<?php include(locate_template('template-parts/child-layouts/team-list.php')); ?>
 <?php } elseif (is_page('contact-us')) { ?>
 	<?php include(locate_template('template-parts/child-layouts/location-list.php')); ?>
 <?php } ?>
+
+
 
 
