@@ -1,0 +1,69 @@
+html, body{height:100%; width:100%; padding:0; margin:0;}
+body{position:relative; transition: all 500ms ease; -ms-content-zoom-boundary-max: 100%; -ms-content-zoom-boundary-min: 100%;}
+
+.edge-menu{position:fixed; z-index:99; background:#EEE; width:270px; transition: all 500ms ease;}
+
+/* FULL SCREEN */
+.edge-menu.full{left:0; right:0; width:100%; height:100%;}
+
+/* OPEN LEFT */
+.edge-menu.left{top:0; bottom:0;}
+.edge-menu.left.closed{left:-270px;}
+.edge-menu.left.open{ top:0; bottom:0; left:0;}
+
+/* OPEN RIGHT */
+.edge-menu.right{top:0; bottom:0;}
+.edge-menu.right.closed{right:-270px;}
+.edge-menu.right.open{right:0;}
+
+/* OPEN TOP */
+.edge-menu.top{width:100%; height:270px; overflow:auto;}
+.edge-menu.top.closed{top:-270px;/* override height if using push*/}
+.edge-menu.top.open{top:0;}
+
+/* OPEN BOTTOM */
+.edge-menu.bottom{width:100%;}
+.edge-menu.bottom.closed{bottom:-270px;}
+.edge-menu.bottom.open{bottom:0; height:100%;}
+
+/* OPEN TOP FULL */
+.edge-menu.top.full.closed{bottom:100%; height:100%; top:-100%;}
+.edge-menu.top.full.open{bottom:0; height:100%;}
+
+/* OPEN BOTTOM FULL */
+.edge-menu.bottom.full.closed{top:100%; height:100%; bottom:-100%;}
+.edge-menu.bottom.full.open{top:0; height:100%;}
+
+/* OPEN LEFT FULL */
+.edge-menu.left.full.closed{right:100%; left:auto; height:100%; width:100%;}
+.edge-menu.left.full.open{right:0; left:auto; height:100%; width:100%;}
+
+/* OPEN right FULL */
+.edge-menu.right.full.closed{left:100%; right:auto; height:100%; width:100%;}
+.edge-menu.right.full.open{left:0; right:auto; height:100%; width:100%;}
+
+/* CONTROL */
+.edge-control{cursor:pointer;}
+
+
+body.open{overflow:hidden;}
+
+/* PUSH LEFT */
+body.push-left.open{left:270px;}
+body.push-left.closed{left:0;}
+
+/* PUSH RIGHT */
+body.push-right.open{right:270px;}
+body.push-right.closed{right:0;}
+
+/* PUSH TOP */
+body.push-top{left:0; right:0;}
+body.push-top.open{top:270px;}
+body.push-top.closed{top:0;}
+
+/* PUSH BOTTOM */
+body.push-bottom{left:0; right:0;}
+body.push-bottom.open{bottom:270px;}
+body.push-bottom.closed{bottom:0;}
+
+body.open:before{content:" "; position:absolute; width:100%; height:100%; cursor:pointer;}

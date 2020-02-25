@@ -9,12 +9,12 @@ if (empty($pageCount)) {
 	$loop = new WP_Query( $args );
 	
 	while ( $loop->have_posts() ) : $loop->the_post();
-		$img = get_cfc_field('project-photos-group', 'project-photo', $post->ID );
-		$locationAddress1 = get_cfc_field('address-group', 'address-1', $post->ID );
-		$locationAddress2 = get_cfc_field('address-group', 'address-2', $post->ID );
-		$locationCity = get_cfc_field('address-group', 'city', $post->ID );
-		$locationState = get_cfc_field('address-group', 'state', $post->ID );
-		$locationZip = get_cfc_field('address-group', 'postal-code', $post->ID );
+		$locationAddress1 	= get_cfc_field('location-group', 'location-address-1', $post->ID );
+		$locationAddress2 	= get_cfc_field('location-group', 'location-address-2', $post->ID );
+		$locationCity 		= get_cfc_field('location-group', 'location-city', $post->ID );
+		$locationZip 		= get_cfc_field('location-group', 'location-postal-code', $post->ID );
+		$locationLat = get_cfc_field('location-group', 'location-latitude', $post->ID );
+		$locationLong = get_cfc_field('location-group', 'location-longitude', $post->ID );
 		$fullAddress = $locationAddress1 . '' . $locationAddress2 . ', ' . $locationCity . ', ' . $locationState . ', ' . $locationZip;
 		?>
 		<div class="col-sm-12 item">

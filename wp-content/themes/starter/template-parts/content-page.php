@@ -60,11 +60,40 @@
 	<?php include(locate_template('template-parts/child-layouts/services-list.php')); ?>
 <?php } elseif (is_page('faq')) { ?>
 	<?php include(locate_template('template-parts/child-layouts/faq-list.php')); ?>
-<?php } elseif (is_page('projects')) { ?>e_template('inc/post-type-categories.php')); ?>
+<?php } elseif (is_page('projects')) { ?>
+	<?php include(locate_template('inc/post-type-categories.php')); ?>
 	<?php include(locate_template('template-parts/child-layouts/project-list.php')); ?>
 <?php } elseif (is_page('our-team')) { ?>
 	<?php include(locate_template('template-parts/child-layouts/team-list.php')); ?>
 <?php } elseif (is_page('contact-us')) { ?>
+<?php include(locate_template('inc/settings.php')); ?>
+	<h5>Our Location</h5>
+	<div class="contact-info">
+		<address>
+		<?php echo $address1; ?><?php echo $address2; ?><br>
+		<?php echo $city; ?>, <?php echo $state; ?>. <?php echo $zip; ?>
+		</address>
+
+		Call Us Today!<br>
+		<h5><?php echo $phone; ?></h5>
+		<hr>
+		<?php include(locate_template('inc/social-icons.php')); ?>
+	</div>
+<?php } elseif (is_page('maps')) { ?>
+	<?php
+		include(locate_template('inc/settings.php'));
+		$fullAddress = $address1 . '' . $address2 . ',' . $city . ', ' . $state . ', ' . $zip;
+	?>
+		
+		<h3>Static</h3>
+		<?php $mapType = 1; include(locate_template('inc/map.php')); ?>
+		<h3>Interactive</h3>
+		<?php $mapType = 2; include(locate_template('inc/map.php')); ?>
+		<h3>Multiple</h3>
+		<?php $mapType = 5; include(locate_template('inc/map.php')); ?>
+<?php } elseif (is_page('locations')) { ?>
+	<?php $mapType = 5; include(locate_template('inc/map.php')); ?>
+
 	<?php include(locate_template('template-parts/child-layouts/location-list.php')); ?>
 <?php } ?>
 

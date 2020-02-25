@@ -8,7 +8,7 @@
  *
  * @package starter
  */
-
+include(locate_template('inc/settings.php'));
 ?>
 
 <?php wp_footer(); ?>
@@ -22,7 +22,7 @@
   <div class="footer-top">
     <div class="container clearfix">
       	<div class="pull-left"> 
-      		<div class="copyright">© 2018, <a href="/" title="<?php bloginfo( 'name' ); ?>"><?php bloginfo( 'name' ); ?></a> | <a href="http://redsixmedia.com" target="_blank" title="Red Six Media is an award-winning, full-service advertizing agency with services ranging from advertizing and graphic design to web development and brand strategy.">Website Design</a> by R6.</div>
+      		<div class="copyright">© <?php echo date('Y'); ?>, <a href="/" title="<?php bloginfo( 'name' ); ?>"><?php bloginfo( 'name' ); ?></a> | <a href="http://redsixmedia.com" target="_blank" title="Red Six Media is an award-winning, full-service advertizing agency with services ranging from advertizing and graphic design to web development and brand strategy.">Website Design</a> by R6.</div>
 		</div>
       
       <div class="nav-footer pull-right clearfix hidden-xs hidden-sm">
@@ -32,7 +32,6 @@
 				<?php
 					wp_nav_menu( array(
 						'theme_location' => 'primary',
-						'menu_id'        => 'MenuList',
 						'menu_class'	=> 'nav nav-pills nav-justified',
 					) );
 				?>
@@ -49,12 +48,12 @@
 			<h5>Our Location</h5>
 			<div class="contact-info">
 				<address>
-				12345 Address Blvd.<br>
-				Baton Rouge, La. 70710
+				<?php echo $address1; ?><?php echo $address2; ?><br>
+				<?php echo $city; ?>, <?php echo $state; ?>. <?php echo $zip; ?>
 				</address>
 
 				Call Us Today!<br>
-				<h5>555-555-5555</h5>
+				<h5><?php echo $phone; ?></h5>
 				<hr>
 				<?php include(locate_template('inc/social-icons.php')); ?>
 			</div>
@@ -86,27 +85,9 @@
 					<div class="date"><?php $recent["post_date"] ?></div>
 					<?php echo '<a href="' . get_permalink($recent["ID"]) . '">' .   ( __($recent["post_title"])).'</a><br>' .   ( __($recent["post_excerpt"])).''; ?>
 				</article>
-				<?php
-					}
-					wp_reset_query();
-				?>
+				<?php }	wp_reset_query(); ?>
 			</div>
 			<a href="/blog" class="btn btn-primary">Read More</a>
-		</div>
-		<div class="col-sm-4">
-			<h5>Contact Us</h5>
-			<form class="contact-form">
-				<div class="form-group">
-					<input class="form-control" type="text" placeholder="Name">
-				</div>
-				<div class="form-group">
-					<input class="form-control" type="text" placeholder="Phone">
-				</div>
-				<div class="form-group">
-					<input class="form-control" type="text" placeholder="Email">
-				</div>
-				<input class="btn btn-primary" type="submit" value="Send">
-			</form>
 		</div>
 	</div>
 	</div>
@@ -114,35 +95,29 @@
 </div>
 
 </div>
-<a href="#" class="btn btn-default back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 
-<link href="<?php bloginfo( 'template_url' ); ?>/assets/css/styles.css" rel="stylesheet">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<!-- ADD JPUSHMENU -->
-<link href="<?php bloginfo( 'template_url' ); ?>/assets/css/jPushMenu.css" rel="stylesheet">
-<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/jPushMenu.js"></script>
+<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/jquery.min.js"></script>
 
-<!-- ADD CYCLE -->
-<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/jquery.cycle2.js"></script>
-<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/jquery.cycle2.carousel.min.js"></script>
+<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/jquery.swipe.js"></script>
+<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/jquery.touch.js"></script>
+<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/edge-menu.js"></script>
 
-<!-- ADD FANCYBOX -->
-<link rel="stylesheet" href="<?php bloginfo( 'template_url' ); ?>/assets/js/fancy/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/fancy/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<!-- ADD RESPONSIVE TABS -->
-<link rel="stylesheet" href="<?php bloginfo( 'template_url' ); ?>/assets/css/responsive-tabs.css">
-<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/jquery.responsiveTabs.min.js"></script>
+<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/jquery.fitVids.js"></script>
 
-<!-- PARALLAX -->
-<script src="<?php bloginfo( 'template_url' ); ?>/assets/js/parallax.min.js"></script>
+<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/slick.min.js"></script>
 
+<?php if (is_page('projects')) { ?>
 <!-- Isotope -->
-<script type='text/javascript' src='http://aaronlandry.net/js/jquery.isotope.min.js'></script>
-<script type='text/javascript' src='http://isotope.metafizzy.co/isotope.pkgd.js'></script>
-<script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+<script type='text/javascript' src='<?php bloginfo( 'template_url' ); ?>/assets/js/isotope.pkgd.js'></script>
+<script src="<?php bloginfo( 'template_url' ); ?>/assets/js/packery-mode.pkgd.js"></script>
+<?php }else{ ?>
+<script src="<?php bloginfo( 'template_url' ); ?>/assets/js/packery.pkgd.min.js"></script>
+<?php } ?>
+<script src="<?php bloginfo( 'template_url' ); ?>/assets/js/imagesloaded.pkgd.min.js"></script>
 
 
 <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/assets/js/javascript.js"></script>
